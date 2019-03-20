@@ -62,6 +62,20 @@
       </detailed>
     </description>
     <voice name="" synthesizeAlways="no" />
+    <actions>
+      <talk-to needsGoTo="yes" keepDistance="35" not-effects="no">
+        <effect>
+          <trigger-conversation idTarget="ConversationWithAlmostGirlfriend1" />
+          <condition />
+        </effect>
+      </talk-to>
+      <talk-to needsGoTo="yes" keepDistance="35" not-effects="no">
+        <effect>
+          <trigger-conversation idTarget="ConversationWithAlmostGirlfriend2" />
+          <condition />
+        </effect>
+      </talk-to>
+    </actions>
   </character>
   <character id="BadGuy">
     <resources name="No name">
@@ -93,6 +107,25 @@
       </detailed>
     </description>
     <voice name="" synthesizeAlways="no" />
+    <actions>
+      <talk-to needsGoTo="yes" keepDistance="35" not-effects="no">
+        <condition>
+          <inactive flag="TalkedWithBadGuy" />
+        </condition>
+        <effect>
+          <activate flag="TalkedWithBadGuy" />
+          <condition>
+            <inactive flag="TalkedWithBadGuy" />
+          </condition>
+        </effect>
+      </talk-to>
+      <talk-to needsGoTo="yes" keepDistance="35" not-effects="no">
+        <effect>
+          <trigger-conversation idTarget="ConversationWithBadguy2" />
+          <condition />
+        </effect>
+      </talk-to>
+    </actions>
   </character>
   <character id="CalculatorGirl">
     <resources name="No name">
@@ -124,6 +157,14 @@
       </detailed>
     </description>
     <voice name="" synthesizeAlways="no" />
+    <actions>
+      <talk-to needsGoTo="yes" keepDistance="35" not-effects="no">
+        <effect>
+          <trigger-conversation idTarget="ConversationWithCalculator(boi)girl1" />
+          <condition />
+        </effect>
+      </talk-to>
+    </actions>
   </character>
   <character id="Teacher">
     <resources name="No name">
@@ -155,6 +196,14 @@
       </detailed>
     </description>
     <voice name="" synthesizeAlways="no" />
+    <actions>
+      <talk-to needsGoTo="yes" keepDistance="35" not-effects="no">
+        <effect>
+          <trigger-conversation idTarget="ConversationWithTeacher1" />
+          <condition />
+        </effect>
+      </talk-to>
+    </actions>
   </character>
   <scene id="ExamClass" start="yes" playerLayer="-1" playerScale="0.7" class="accesible" type="area">
     <documentation>
@@ -167,13 +216,20 @@
     <default-initial-position x="963" y="1005" />
     <exits>
       <exit rectangular="no" x="1510" y="357" width="103" height="400" hasInfluenceArea="no" idTarget="Hall" destinyY="-2147483648" destinyX="-2147483648" destinyScale="1" transitionType="0" transitionTime="0" not-effects="no">
-        <exit-look text="" />
+        <exit-look text="" cursor-path="" sound-path="" />
         <point x="1510" y="384" />
         <point x="1610" y="357" />
         <point x="1613" y="757" />
         <point x="1519" y="719" />
+        <condition>
+          <active flag="TalkedWithBadGuy" />
+        </condition>
       </exit>
     </exits>
+    <characters>
+      <character-ref idTarget="AlmostGirlfriend" x="286" y="940" scale="1" orientation="2" layer="1" hasInfluenceArea="no" />
+      <character-ref idTarget="BadGuy" x="1546" y="765" scale="0.6931571" orientation="2" layer="0" hasInfluenceArea="no" />
+    </characters>
   </scene>
   <scene id="AuxClass" start="no" playerLayer="-1" playerScale="0.7" class="accesible" type="area">
     <documentation>
@@ -184,15 +240,9 @@
     <name>
     </name>
     <default-initial-position x="926" y="1066" />
-    <exits>
-      <exit rectangular="no" x="1513" y="357" width="108" height="406" hasInfluenceArea="no" idTarget="Stairs" destinyY="-2147483648" destinyX="-2147483648" destinyScale="1" transitionType="0" transitionTime="0" not-effects="no">
-        <exit-look text="" />
-        <point x="1513" y="392" />
-        <point x="1621" y="357" />
-        <point x="1621" y="763" />
-        <point x="1523" y="730" />
-      </exit>
-    </exits>
+    <characters>
+      <character-ref idTarget="CalculatorGirl" x="274" y="918" scale="0.8317732" orientation="2" layer="0" hasInfluenceArea="no" />
+    </characters>
   </scene>
   <scene id="Hall" start="no" playerLayer="-1" playerScale="0.7" class="accesible" type="area">
     <documentation>
@@ -205,35 +255,28 @@
     <default-initial-position x="1862" y="1084" />
     <exits>
       <exit rectangular="yes" x="254" y="959" width="1395" height="126" hasInfluenceArea="no" idTarget="ExamClass" destinyY="-2147483648" destinyX="-2147483648" destinyScale="1" transitionType="0" transitionTime="0" not-effects="no">
-        <exit-look text="" />
+        <exit-look text="" cursor-path="" sound-path="" />
       </exit>
       <exit rectangular="no" x="927" y="396" width="128" height="337" hasInfluenceArea="no" idTarget="Bathroom" destinyY="-2147483648" destinyX="-2147483648" destinyScale="1" transitionType="0" transitionTime="0" not-effects="no">
-        <exit-look text="" />
+        <exit-look text="" cursor-path="" sound-path="" />
         <point x="930" y="442" />
         <point x="1055" y="396" />
         <point x="1052" y="733" />
         <point x="927" y="679" />
       </exit>
       <exit rectangular="no" x="85" y="257" width="137" height="664" hasInfluenceArea="no" idTarget="Office" destinyY="-2147483648" destinyX="-2147483648" destinyScale="1" transitionType="0" transitionTime="0" not-effects="no">
-        <exit-look text="" />
+        <exit-look text="" cursor-path="" sound-path="" />
         <point x="85" y="257" />
         <point x="220" y="320" />
         <point x="222" y="818" />
         <point x="93" y="921" />
       </exit>
-      <exit rectangular="no" x="1176" y="115" width="270" height="785" hasInfluenceArea="no" idTarget="Stairs" destinyY="-2147483648" destinyX="-2147483648" destinyScale="1" transitionType="0" transitionTime="0" not-effects="no">
-        <exit-look text="" />
-        <point x="1176" y="247" />
-        <point x="1446" y="115" />
-        <point x="1441" y="900" />
-        <point x="1178" y="786" />
-      </exit>
       <exit rectangular="yes" x="574" y="453" width="173" height="215" hasInfluenceArea="no" idTarget="Playground" destinyY="-2147483648" destinyX="-2147483648" destinyScale="1" transitionType="0" transitionTime="0" not-effects="no">
-        <exit-look text="" />
+        <exit-look text="" cursor-path="" sound-path="" />
       </exit>
     </exits>
   </scene>
-  <scene id="Bathroom" start="no" playerLayer="-1" playerScale="0.2" class="accesible" type="area">
+  <scene id="Bathroom" start="no" playerLayer="-1" playerScale="0.8827676" class="accesible" type="area">
     <documentation>
     </documentation>
     <resources name="No name">
@@ -241,10 +284,10 @@
     </resources>
     <name>
     </name>
-    <default-initial-position x="104" y="636" />
+    <default-initial-position x="442" y="969" />
     <exits>
       <exit rectangular="yes" x="694" y="142" width="326" height="726" hasInfluenceArea="no" idTarget="Hall" destinyY="-2147483648" destinyX="-2147483648" destinyScale="1" transitionType="0" transitionTime="0" not-effects="no">
-        <exit-look text="" />
+        <exit-look text="" cursor-path="" sound-path="" />
       </exit>
     </exits>
     <objects>
@@ -262,11 +305,11 @@
     <default-initial-position x="144" y="311" />
     <exits>
       <exit rectangular="yes" x="-1" y="99" width="129" height="244" hasInfluenceArea="no" idTarget="Hall" destinyY="-2147483648" destinyX="-2147483648" destinyScale="1" transitionType="0" transitionTime="0" not-effects="no">
-        <exit-look text="" />
+        <exit-look text="" cursor-path="" sound-path="" />
       </exit>
     </exits>
   </scene>
-  <scene id="Playground" start="no" playerLayer="-1" playerScale="0.817757" class="accesible" type="area">
+  <scene id="Playground" start="no" playerLayer="-1" playerScale="0.3227505" class="accesible" type="area">
     <documentation>
     </documentation>
     <resources name="No name">
@@ -274,30 +317,37 @@
     </resources>
     <name>
     </name>
-    <default-initial-position x="1963" y="806" />
+    <default-initial-position x="812" y="792" />
     <exits>
       <exit rectangular="yes" x="1379" y="546" width="266" height="193" hasInfluenceArea="no" idTarget="Hall" destinyY="-2147483648" destinyX="-2147483648" destinyScale="1" transitionType="0" transitionTime="0" not-effects="no">
-        <exit-look text="" />
+        <exit-look text="" cursor-path="" sound-path="" />
       </exit>
     </exits>
   </scene>
-  <scene id="Stairs" start="no" playerLayer="-1" playerScale="0.7159616" class="accesible" type="area">
+  <scene id="Stairs" start="no" playerLayer="-1" playerScale="0.6644692" class="accesible" type="area">
     <documentation>
     </documentation>
     <resources name="No name">
       <asset type="background" uri="assets/background/StairsBackground.png" />
+      <asset type="foreground" uri="" />
     </resources>
     <name>
     </name>
-    <default-initial-position x="1295" y="966" />
+    <default-initial-position x="947" y="1006" />
     <exits>
-      <exit rectangular="yes" x="188" y="474" width="502" height="382" hasInfluenceArea="no" idTarget="Hall" destinyY="-2147483648" destinyX="-2147483648" destinyScale="1" transitionType="0" transitionTime="0" not-effects="no">
-        <exit-look text="" />
+      <exit rectangular="yes" x="320" y="568" width="392" height="290" hasInfluenceArea="no" idTarget="Hall" destinyY="-2147483648" destinyX="-2147483648" destinyScale="1" transitionType="0" transitionTime="0" not-effects="no">
+        <exit-look text="" cursor-path="" sound-path="" />
       </exit>
-      <exit rectangular="yes" x="718" y="142" width="323" height="162" hasInfluenceArea="no" idTarget="AuxClass" destinyY="-2147483648" destinyX="-2147483648" destinyScale="1" transitionType="0" transitionTime="0" not-effects="no">
-        <exit-look text="" />
+      <exit rectangular="yes" x="729" y="140" width="372" height="160" hasInfluenceArea="no" idTarget="AuxClass" destinyY="-2147483648" destinyX="-2147483648" destinyScale="1" transitionType="0" transitionTime="0" not-effects="no">
+        <exit-look text="" cursor-path="" sound-path="" />
       </exit>
     </exits>
+    <objects>
+      <object-ref idTarget="FireAlarm" x="1483" y="549" scale="0.3" layer="0" hasInfluenceArea="no" />
+    </objects>
+    <characters>
+      <character-ref idTarget="BadGuy" x="1767" y="951" scale="1" orientation="2" layer="1" hasInfluenceArea="no" />
+    </characters>
   </scene>
   <object id="Password" returnsWhenDragged="yes" behaviour="normal" resources-transition-time="0">
     <resources name="No name">
@@ -313,4 +363,54 @@
       </detailed>
     </description>
   </object>
+  <object id="FireAlarm" returnsWhenDragged="yes" behaviour="normal" resources-transition-time="0">
+    <resources name="No name">
+      <asset type="image" uri="assets/image/fire_alarm.png" />
+      <asset type="icon" uri="assets/special/EmptyIcon.png" />
+    </resources>
+    <description>
+      <name>
+      </name>
+      <brief>
+      </brief>
+      <detailed>
+      </detailed>
+    </description>
+  </object>
+  <graph-conversation id="ConversationWithBadGuy1">
+    <dialogue-node nodeindex="0">
+      <speak-char idTarget="BadGuy">
+      </speak-char>
+      <condition />
+      <end-conversation />
+    </dialogue-node>
+  </graph-conversation>
+  <graph-conversation id="ConversationWithAlmostGirlfriend1">
+    <dialogue-node nodeindex="0">
+      <end-conversation />
+    </dialogue-node>
+  </graph-conversation>
+  <graph-conversation id="ConversationWithAlmostGirlfriend2">
+    <dialogue-node nodeindex="0">
+      <end-conversation />
+    </dialogue-node>
+  </graph-conversation>
+  <graph-conversation id="ConversationWithBadguy2">
+    <dialogue-node nodeindex="0">
+      <end-conversation />
+    </dialogue-node>
+  </graph-conversation>
+  <graph-conversation id="ConversationWithCalculator(boi)girl1">
+    <dialogue-node nodeindex="0">
+      <speak-player>
+      </speak-player>
+      <condition />
+      <end-conversation />
+    </dialogue-node>
+  </graph-conversation>
+  <graph-conversation id="ConversationWithTeacher1">
+    <dialogue-node nodeindex="0">
+      <end-conversation />
+    </dialogue-node>
+  </graph-conversation>
 </eAdventure>
