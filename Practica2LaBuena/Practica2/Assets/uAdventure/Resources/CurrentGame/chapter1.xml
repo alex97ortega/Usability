@@ -67,12 +67,10 @@
         <effect>
           <trigger-conversation idTarget="ConversationWithAlmostGirlfriend1" />
           <condition />
-        </effect>
-      </talk-to>
-      <talk-to needsGoTo="yes" keepDistance="35" not-effects="no">
-        <effect>
-          <trigger-conversation idTarget="ConversationWithAlmostGirlfriend2" />
-          <condition />
+          <activate flag="TalkedWithAlmostgirlfirend1" />
+          <condition>
+            <inactive flag="TalkedWithAlmostgirlfirend1" />
+          </condition>
         </effect>
       </talk-to>
     </actions>
@@ -110,19 +108,17 @@
     <actions>
       <talk-to needsGoTo="yes" keepDistance="35" not-effects="no">
         <condition>
-          <inactive flag="TalkedWithBadGuy" />
+          <inactive flag="TalkedWithAlmostgirlfirend1" />
         </condition>
         <effect>
+          <trigger-conversation idTarget="ConversationWithBadGuy1" />
+          <condition>
+            <inactive flag="TalkedWithBadGuy" />
+          </condition>
           <activate flag="TalkedWithBadGuy" />
           <condition>
             <inactive flag="TalkedWithBadGuy" />
           </condition>
-        </effect>
-      </talk-to>
-      <talk-to needsGoTo="yes" keepDistance="35" not-effects="no">
-        <effect>
-          <trigger-conversation idTarget="ConversationWithBadguy2" />
-          <condition />
         </effect>
       </talk-to>
     </actions>
@@ -227,8 +223,16 @@
       </exit>
     </exits>
     <characters>
-      <character-ref idTarget="AlmostGirlfriend" x="286" y="940" scale="1" orientation="2" layer="1" hasInfluenceArea="no" />
-      <character-ref idTarget="BadGuy" x="1546" y="765" scale="0.6931571" orientation="2" layer="0" hasInfluenceArea="no" />
+      <character-ref idTarget="AlmostGirlfriend" x="286" y="940" scale="1" orientation="2" layer="1" hasInfluenceArea="no">
+        <condition>
+          <inactive flag="TalkedWithAlmostgirlfirend1" />
+        </condition>
+      </character-ref>
+      <character-ref idTarget="BadGuy" x="1546" y="765" scale="0.6931571" orientation="2" layer="0" hasInfluenceArea="no">
+        <condition>
+          <inactive flag="TalkedWithBadGuy" />
+        </condition>
+      </character-ref>
     </characters>
   </scene>
   <scene id="AuxClass" start="no" playerLayer="-1" playerScale="0.7" class="accesible" type="area">
@@ -271,8 +275,15 @@
         <point x="222" y="818" />
         <point x="93" y="921" />
       </exit>
-      <exit rectangular="yes" x="574" y="453" width="173" height="215" hasInfluenceArea="no" idTarget="Playground" destinyY="-2147483648" destinyX="-2147483648" destinyScale="1" transitionType="0" transitionTime="0" not-effects="no">
+      <exit rectangular="yes" x="574" y="453" width="173" height="215" hasInfluenceArea="no" idTarget="Stairs" destinyY="-2147483648" destinyX="-2147483648" destinyScale="1" transitionType="0" transitionTime="0" not-effects="no">
         <exit-look text="" cursor-path="" sound-path="" />
+      </exit>
+      <exit rectangular="no" x="1184" y="120" width="259" height="743" hasInfluenceArea="no" idTarget="Playground" destinyY="-2147483648" destinyX="-2147483648" destinyScale="1" transitionType="0" transitionTime="0" not-effects="no">
+        <exit-look text="" cursor-path="" sound-path="" />
+        <point x="1194" y="236" />
+        <point x="1443" y="120" />
+        <point x="1443" y="863" />
+        <point x="1184" y="763" />
       </exit>
     </exits>
   </scene>
@@ -379,14 +390,59 @@
   </object>
   <graph-conversation id="ConversationWithBadGuy1">
     <dialogue-node nodeindex="0">
-      <speak-char idTarget="BadGuy">
-      </speak-char>
+      <speak-char idTarget="BadGuy">Vaya cara llevas, seguro que suspendes pringao,¿quieres un cigarro y asi te calmas?</speak-char>
+      <condition />
+      <child nodeindex="1" />
+    </dialogue-node>
+    <option-node nodeindex="1" preListening="yes" editor-x="437" editor-y="174" x="437" y="174">
+      <speak-player>Va, venga</speak-player>
+      <condition />
+      <child nodeindex="2" />
+      <speak-player>Quédate con tus cigarros, yo tengo que solucionar esto</speak-player>
+      <condition />
+      <child nodeindex="3" />
+    </option-node>
+    <dialogue-node nodeindex="2" editor-x="671" editor-y="152">
+      <end-conversation />
+    </dialogue-node>
+    <dialogue-node nodeindex="3" editor-x="666" editor-y="397">
+      <speak-char idTarget="BadGuy">No me digas que vas a hacer eso que hablamos... jejejeje</speak-char>
+      <condition />
+      <child nodeindex="4" />
+    </dialogue-node>
+    <dialogue-node nodeindex="4" editor-x="1077" editor-y="409">
+      <speak-player>ejejejeje</speak-player>
       <condition />
       <end-conversation />
     </dialogue-node>
   </graph-conversation>
   <graph-conversation id="ConversationWithAlmostGirlfriend1">
     <dialogue-node nodeindex="0">
+      <speak-char idTarget="AlmostGirlfriend">¿Qué tal se te ha dado el examen?</speak-char>
+      <condition />
+      <child nodeindex="1" />
+    </dialogue-node>
+    <option-node nodeindex="1" preListening="yes" editor-x="437" editor-y="174" x="437" y="174">
+      <speak-player>Fatal, lo suspendo seguro :(</speak-player>
+      <condition />
+      <child nodeindex="2" />
+      <speak-player>Bien, me he esforzado mucho (mentir)</speak-player>
+      <condition />
+      <child nodeindex="3" />
+    </option-node>
+    <dialogue-node nodeindex="2" editor-x="670" editor-y="69">
+      <speak-char idTarget="AlmostGirlfriend">Ah, pues si quieres te espero en la salida y te ayudo a estudiar para el próximo examen</speak-char>
+      <condition />
+      <child nodeindex="4" />
+    </dialogue-node>
+    <dialogue-node nodeindex="3" editor-x="672" editor-y="288">
+      <speak-char idTarget="AlmostGirlfriend">Vaya! Pues el profe lo ha puesto más chungo que nunca</speak-char>
+      <condition />
+      <end-conversation />
+    </dialogue-node>
+    <dialogue-node nodeindex="4" editor-x="1134" editor-y="71">
+      <speak-player>Vale, genial</speak-player>
+      <condition />
       <end-conversation />
     </dialogue-node>
   </graph-conversation>
