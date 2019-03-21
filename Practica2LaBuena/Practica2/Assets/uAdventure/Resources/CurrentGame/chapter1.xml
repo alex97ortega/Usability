@@ -108,7 +108,7 @@
     <actions>
       <talk-to needsGoTo="yes" keepDistance="35" not-effects="no">
         <condition>
-          <inactive flag="TalkedWithAlmostgirlfirend1" />
+          <inactive flag="TalkedWithBadGuy" />
         </condition>
         <effect>
           <trigger-conversation idTarget="ConversationWithBadGuy1" />
