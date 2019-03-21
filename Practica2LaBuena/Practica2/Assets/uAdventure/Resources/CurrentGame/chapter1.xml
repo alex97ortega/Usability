@@ -64,13 +64,24 @@
     <voice name="" synthesizeAlways="no" />
     <actions>
       <talk-to needsGoTo="yes" keepDistance="35" not-effects="no">
+        <condition>
+          <inactive flag="AlmostgirlfriendWaiting" />
+        </condition>
         <effect>
           <trigger-conversation idTarget="ConversationWithAlmostGirlfriend1" />
           <condition />
           <activate flag="TalkedWithAlmostgirlfirend1" />
-          <condition>
-            <inactive flag="TalkedWithAlmostgirlfirend1" />
-          </condition>
+          <condition />
+        </effect>
+      </talk-to>
+      <talk-to needsGoTo="yes" keepDistance="35" not-effects="no">
+        <condition>
+          <active flag="AlmostgirlfriendWaiting" />
+          <active flag="TalkedWithAlmostgirlfirend1" />
+        </condition>
+        <effect>
+          <trigger-conversation idTarget="ConversationWithAlmostGirlfriend2" />
+          <condition />
         </effect>
       </talk-to>
     </actions>
@@ -119,6 +130,24 @@
           <condition>
             <inactive flag="TalkedWithBadGuy" />
           </condition>
+        </effect>
+      </talk-to>
+      <talk-to needsGoTo="yes" keepDistance="35" not-effects="no">
+        <condition>
+          <active flag="ClassAbandonated" />
+        </condition>
+        <effect>
+          <trigger-conversation idTarget="ConversationWithBadguy2" />
+          <condition />
+        </effect>
+      </talk-to>
+      <talk-to needsGoTo="yes" keepDistance="35" not-effects="no">
+        <condition>
+          <inactive flag="HasBall" />
+        </condition>
+        <effect>
+          <trigger-conversation idTarget="ConversationWithBadGuy3" />
+          <condition />
         </effect>
       </talk-to>
     </actions>
@@ -211,19 +240,30 @@
     </name>
     <default-initial-position x="963" y="1005" />
     <exits>
-      <exit rectangular="no" x="1510" y="357" width="103" height="400" hasInfluenceArea="no" idTarget="Hall" destinyY="-2147483648" destinyX="-2147483648" destinyScale="1" transitionType="0" transitionTime="0" not-effects="no">
+      <exit rectangular="no" x="1449" y="296" width="198" height="530" hasInfluenceArea="no" idTarget="Hall" destinyY="-2147483648" destinyX="-2147483648" destinyScale="1" transitionType="0" transitionTime="0" not-effects="no">
         <exit-look text="" cursor-path="" sound-path="" />
-        <point x="1510" y="384" />
-        <point x="1610" y="357" />
-        <point x="1613" y="757" />
-        <point x="1519" y="719" />
+        <point x="1449" y="384" />
+        <point x="1647" y="296" />
+        <point x="1638" y="826" />
+        <point x="1460" y="721" />
         <condition>
           <active flag="TalkedWithBadGuy" />
         </condition>
+        <post-effect>
+          <activate flag="ClassAbandonated" />
+          <condition />
+        </post-effect>
       </exit>
     </exits>
+    <objects>
+      <object-ref idTarget="Key" x="249" y="938" scale="0.1259487" layer="1" hasInfluenceArea="no">
+        <condition>
+          <active flag="ClassAbandonated" />
+        </condition>
+      </object-ref>
+    </objects>
     <characters>
-      <character-ref idTarget="AlmostGirlfriend" x="286" y="940" scale="1" orientation="2" layer="1" hasInfluenceArea="no">
+      <character-ref idTarget="AlmostGirlfriend" x="286" y="940" scale="1" orientation="2" layer="2" hasInfluenceArea="no">
         <condition>
           <inactive flag="TalkedWithAlmostgirlfirend1" />
         </condition>
@@ -244,6 +284,15 @@
     <name>
     </name>
     <default-initial-position x="926" y="1066" />
+    <exits>
+      <exit rectangular="no" x="1495" y="349" width="131" height="419" hasInfluenceArea="no" idTarget="Stairs" destinyY="-2147483648" destinyX="-2147483648" destinyScale="1" transitionType="0" transitionTime="0" not-effects="no">
+        <exit-look text="" cursor-path="" sound-path="" />
+        <point x="1502" y="384" />
+        <point x="1626" y="349" />
+        <point x="1626" y="768" />
+        <point x="1495" y="723" />
+      </exit>
+    </exits>
     <characters>
       <character-ref idTarget="CalculatorGirl" x="274" y="918" scale="0.8317732" orientation="2" layer="0" hasInfluenceArea="no" />
     </characters>
@@ -258,7 +307,7 @@
     </name>
     <default-initial-position x="1862" y="1084" />
     <exits>
-      <exit rectangular="yes" x="254" y="959" width="1395" height="126" hasInfluenceArea="no" idTarget="ExamClass" destinyY="-2147483648" destinyX="-2147483648" destinyScale="1" transitionType="0" transitionTime="0" not-effects="no">
+      <exit rectangular="yes" x="1654" y="598" width="303" height="488" hasInfluenceArea="no" idTarget="ExamClass" destinyY="-2147483648" destinyX="-2147483648" destinyScale="1" transitionType="0" transitionTime="0" not-effects="no">
         <exit-look text="" cursor-path="" sound-path="" />
       </exit>
       <exit rectangular="no" x="927" y="396" width="128" height="337" hasInfluenceArea="no" idTarget="Bathroom" destinyY="-2147483648" destinyX="-2147483648" destinyScale="1" transitionType="0" transitionTime="0" not-effects="no">
@@ -268,12 +317,25 @@
         <point x="1052" y="733" />
         <point x="927" y="679" />
       </exit>
-      <exit rectangular="no" x="85" y="257" width="137" height="664" hasInfluenceArea="no" idTarget="Office" destinyY="-2147483648" destinyX="-2147483648" destinyScale="1" transitionType="0" transitionTime="0" not-effects="no">
+      <exit rectangular="no" x="85" y="257" width="137" height="664" hasInfluenceArea="no" idTarget="Office" destinyY="-2147483648" destinyX="-2147483648" destinyScale="1" transitionType="0" transitionTime="0" not-effects="yes">
         <exit-look text="" cursor-path="" sound-path="" />
         <point x="85" y="257" />
         <point x="220" y="320" />
         <point x="222" y="818" />
         <point x="93" y="921" />
+        <condition>
+          <active flag="HasKey" />
+        </condition>
+        <effect>
+          <speak-player>Está cerrrado. Necesitaría una llave o algo.</speak-player>
+          <condition>
+            <inactive flag="HasKey" />
+          </condition>
+        </effect>
+        <not-effect>
+          <speak-player>No se abre. Necesitaría una llave.</speak-player>
+          <condition />
+        </not-effect>
       </exit>
       <exit rectangular="yes" x="574" y="453" width="173" height="215" hasInfluenceArea="no" idTarget="Stairs" destinyY="-2147483648" destinyX="-2147483648" destinyScale="1" transitionType="0" transitionTime="0" not-effects="no">
         <exit-look text="" cursor-path="" sound-path="" />
@@ -305,7 +367,7 @@
       <object-ref idTarget="Password" x="1535" y="1075" scale="0.1262324" layer="0" hasInfluenceArea="no" />
     </objects>
   </scene>
-  <scene id="Office" start="no" playerLayer="-1" playerScale="0.3185617" class="accesible" type="area">
+  <scene id="Office" start="no" playerLayer="-1" playerScale="0.2245319" class="accesible" type="area">
     <documentation>
     </documentation>
     <resources name="No name">
@@ -313,12 +375,16 @@
     </resources>
     <name>
     </name>
-    <default-initial-position x="144" y="311" />
+    <default-initial-position x="142" y="323" />
     <exits>
       <exit rectangular="yes" x="-1" y="99" width="129" height="244" hasInfluenceArea="no" idTarget="Hall" destinyY="-2147483648" destinyX="-2147483648" destinyScale="1" transitionType="0" transitionTime="0" not-effects="no">
         <exit-look text="" cursor-path="" sound-path="" />
       </exit>
     </exits>
+    <objects>
+      <object-ref idTarget="Exams" x="317" y="155" scale="0.2361239" layer="0" hasInfluenceArea="no" />
+      <object-ref idTarget="Ball" x="89" y="109" scale="0.07921551" layer="1" hasInfluenceArea="no" />
+    </objects>
   </scene>
   <scene id="Playground" start="no" playerLayer="-1" playerScale="0.3227505" class="accesible" type="area">
     <documentation>
@@ -334,6 +400,13 @@
         <exit-look text="" cursor-path="" sound-path="" />
       </exit>
     </exits>
+    <characters>
+      <character-ref idTarget="AlmostGirlfriend" x="129" y="820" scale="0.5004728" orientation="2" layer="0" hasInfluenceArea="no">
+        <condition>
+          <active flag="AlmostgirlfriendWaiting" />
+        </condition>
+      </character-ref>
+    </characters>
   </scene>
   <scene id="Stairs" start="no" playerLayer="-1" playerScale="0.6644692" class="accesible" type="area">
     <documentation>
@@ -387,6 +460,100 @@
       <detailed>
       </detailed>
     </description>
+  </object>
+  <object id="Calculator" returnsWhenDragged="yes" behaviour="normal" resources-transition-time="0">
+    <resources name="No name">
+      <asset type="image" uri="assets/image/Calculadora.png" />
+      <asset type="icon" uri="assets/special/EmptyIcon.png" />
+    </resources>
+    <description>
+      <name>
+      </name>
+      <brief>
+      </brief>
+      <detailed>
+      </detailed>
+    </description>
+  </object>
+  <object id="Key" returnsWhenDragged="yes" behaviour="normal" resources-transition-time="0">
+    <resources name="No name">
+      <asset type="image" uri="assets/image/llave.png" />
+      <asset type="icon" uri="assets/special/EmptyIcon.png" />
+    </resources>
+    <description>
+      <name>
+      </name>
+      <brief>
+      </brief>
+      <detailed>
+      </detailed>
+    </description>
+    <actions>
+      <grab needsGoTo="yes" keepDistance="35" not-effects="no">
+        <effect>
+          <remove-element idTarget="Key" />
+          <condition />
+          <generate-object idTarget="Key" />
+          <condition />
+          <activate flag="HasKey" />
+          <condition />
+        </effect>
+      </grab>
+    </actions>
+  </object>
+  <object id="Lighter" returnsWhenDragged="yes" behaviour="normal" resources-transition-time="0">
+    <resources name="No name">
+      <asset type="image" uri="assets/image/mechero.png" />
+      <asset type="icon" uri="assets/special/EmptyIcon.png" />
+    </resources>
+    <description>
+      <name>
+      </name>
+      <brief>
+      </brief>
+      <detailed>
+      </detailed>
+    </description>
+  </object>
+  <object id="Exams" returnsWhenDragged="yes" behaviour="normal" resources-transition-time="0">
+    <resources name="No name">
+      <asset type="image" uri="assets/image/exams.png" />
+      <asset type="icon" uri="assets/special/EmptyIcon.png" />
+    </resources>
+    <description>
+      <name>
+      </name>
+      <brief>
+      </brief>
+      <detailed>
+      </detailed>
+    </description>
+  </object>
+  <object id="Ball" returnsWhenDragged="yes" behaviour="normal" resources-transition-time="0">
+    <resources name="No name">
+      <asset type="image" uri="assets/image/balon.png" />
+      <asset type="icon" uri="assets/special/EmptyIcon.png" />
+    </resources>
+    <description>
+      <name>
+      </name>
+      <brief>
+      </brief>
+      <detailed>
+      </detailed>
+    </description>
+    <actions>
+      <grab needsGoTo="yes" keepDistance="35" not-effects="no">
+        <effect>
+          <remove-element idTarget="Ball" />
+          <condition />
+          <generate-object idTarget="Ball" />
+          <condition />
+          <activate flag="HasBall" />
+          <condition />
+        </effect>
+      </grab>
+    </actions>
   </object>
   <graph-conversation id="ConversationWithBadGuy1">
     <dialogue-node nodeindex="0">
@@ -443,23 +610,87 @@
     <dialogue-node nodeindex="4" editor-x="1134" editor-y="71">
       <speak-player>Vale, genial</speak-player>
       <condition />
-      <end-conversation />
+      <end-conversation>
+        <effect>
+          <activate flag="AlmostgirlfriendWaiting" />
+          <condition />
+        </effect>
+      </end-conversation>
     </dialogue-node>
   </graph-conversation>
   <graph-conversation id="ConversationWithAlmostGirlfriend2">
     <dialogue-node nodeindex="0">
+      <speak-char idTarget="AlmostGirlfriend">¿Oye, y la calculadora que te presté? </speak-char>
+      <condition />
+      <child nodeindex="1" />
+    </dialogue-node>
+    <option-node nodeindex="1" preListening="yes" editor-x="437" editor-y="174" x="437" y="174">
+      <speak-player>Aquí la tengo</speak-player>
+      <condition />
+      <child nodeindex="2" />
+      <speak-player>Pues creo que se la dejé a Wendy...</speak-player>
+      <condition />
+      <child nodeindex="3" />
+    </option-node>
+    <dialogue-node nodeindex="2" editor-x="823" editor-y="187">
+      <speak-player>Mentirusco!! Traemela porfas</speak-player>
+      <condition>
+        <inactive flag="HasCalculator" />
+      </condition>
+      <speak-player>Pues venga ya nos podemos ir</speak-player>
+      <condition>
+        <active flag="HasCalculator" />
+      </condition>
+      <end-conversation />
+    </dialogue-node>
+    <dialogue-node nodeindex="3" editor-x="687" editor-y="524">
+      <speak-char idTarget="AlmostGirlfriend">Recupéramela anda crack</speak-char>
+      <condition />
       <end-conversation />
     </dialogue-node>
   </graph-conversation>
   <graph-conversation id="ConversationWithBadguy2">
     <dialogue-node nodeindex="0">
+      <speak-char idTarget="BadGuy">¿Vuelves a por un piti?</speak-char>
+      <condition />
+      <child nodeindex="1" />
+    </dialogue-node>
+    <option-node nodeindex="1" preListening="yes" editor-x="437" editor-y="174" x="437" y="174">
+      <speak-player>Si tio</speak-player>
+      <condition />
+      <child nodeindex="2" />
+      <speak-player>No, ya sabes a lo que vengo.</speak-player>
+      <condition />
+      <child nodeindex="3" />
+    </option-node>
+    <dialogue-node nodeindex="2" editor-x="789" editor-y="246">
+      <end-conversation />
+    </dialogue-node>
+    <dialogue-node nodeindex="3" editor-x="687" editor-y="524">
+      <speak-char idTarget="BadGuy">Consígueme el balón que me quitó el profe y te doy lo tuyo sin problem.</speak-char>
+      <condition />
+      <child nodeindex="4" />
+    </dialogue-node>
+    <dialogue-node nodeindex="4" editor-x="972" editor-y="323">
+      <speak-player>Eso está hecho  (ง '̀͜ '́ )ง</speak-player>
+      <condition />
       <end-conversation />
     </dialogue-node>
   </graph-conversation>
   <graph-conversation id="ConversationWithCalculator(boi)girl1">
     <dialogue-node nodeindex="0">
-      <speak-player>
-      </speak-player>
+      <speak-char idTarget="CalculatorGirl">Eyyy tengo tu calculadora</speak-char>
+      <condition />
+      <child nodeindex="1" />
+      <effect>
+        <generate-object idTarget="Calculator" />
+        <condition />
+        <activate flag="HasCalculator" />
+        <condition />
+      </effect>
+    </dialogue-node>
+    <dialogue-node nodeindex="1" editor-x="437" editor-y="174">
+      <speak-player>Genial la andaba buscando</speak-player>
       <condition />
       <end-conversation />
     </dialogue-node>
@@ -467,6 +698,25 @@
   <graph-conversation id="ConversationWithTeacher1">
     <dialogue-node nodeindex="0">
       <end-conversation />
+    </dialogue-node>
+  </graph-conversation>
+  <graph-conversation id="ConversationWithBadGuy3">
+    <dialogue-node nodeindex="0" editor-x="0" editor-y="2">
+      <speak-char idTarget="BadGuy">Aquí tienes lo tuyo</speak-char>
+      <condition />
+      <child nodeindex="1" />
+    </dialogue-node>
+    <dialogue-node nodeindex="1" editor-x="438" editor-y="177">
+      <speak-player>Genial</speak-player>
+      <condition />
+      <end-conversation>
+        <effect>
+          <generate-object idTarget="Lighter" />
+          <condition />
+          <activate flag="HasLighter" />
+          <condition />
+        </effect>
+      </end-conversation>
     </dialogue-node>
   </graph-conversation>
 </eAdventure>
