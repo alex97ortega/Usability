@@ -134,7 +134,7 @@
       </talk-to>
       <talk-to needsGoTo="yes" keepDistance="35" not-effects="no">
         <condition>
-          <active flag="ClassAbandonated" />
+          <inactive flag="HasBall" />
         </condition>
         <effect>
           <trigger-conversation idTarget="ConversationWithBadguy2" />
@@ -143,7 +143,7 @@
       </talk-to>
       <talk-to needsGoTo="yes" keepDistance="35" not-effects="no">
         <condition>
-          <inactive flag="HasBall" />
+          <active flag="HasBall" />
         </condition>
         <effect>
           <trigger-conversation idTarget="ConversationWithBadGuy3" />
@@ -460,6 +460,21 @@
       <detailed>
       </detailed>
     </description>
+    <actions>
+      <use needsGoTo="yes" keepDistance="35" not-effects="no">
+        <condition>
+          <inactive flag="AlarmActivated" />
+        </condition>
+        <effect>
+          <activate flag="AlarmActivated" />
+          <condition />
+          <show-text x="300" y="300" frontColor="#FFFF00FF" borderColor="#FF0000FF" uri="">RIIIIINNNNGGG!!!!</show-text>
+          <condition />
+          <speak-char idTarget="BadGuy">¿Qué haces loco? La que se va a liar...</speak-char>
+          <condition />
+        </effect>
+      </use>
+    </actions>
   </object>
   <object id="Calculator" returnsWhenDragged="yes" behaviour="normal" resources-transition-time="0">
     <resources name="No name">
@@ -528,6 +543,35 @@
       <detailed>
       </detailed>
     </description>
+    <actions>
+      <use needsGoTo="yes" keepDistance="35" not-effects="no">
+        <condition>
+          <inactive flag="HasLighter" />
+        </condition>
+        <effect>
+          <speak-player>Necesito algo antes...</speak-player>
+          <condition />
+        </effect>
+      </use>
+      <use needsGoTo="yes" keepDistance="35" not-effects="no">
+        <condition>
+          <inactive flag="AlarmActivated" />
+        </condition>
+        <effect>
+          <trigger-cutscene idTarget="TeacherFinal" />
+          <condition />
+        </effect>
+      </use>
+      <use needsGoTo="yes" keepDistance="35" not-effects="no">
+        <condition>
+          <active flag="AlarmActivated" />
+        </condition>
+        <effect>
+          <trigger-cutscene idTarget="BurnExamnsFinal" />
+          <condition />
+        </effect>
+      </use>
+    </actions>
   </object>
   <object id="Ball" returnsWhenDragged="yes" behaviour="normal" resources-transition-time="0">
     <resources name="No name">
@@ -569,8 +613,13 @@
       <condition />
       <child nodeindex="3" />
     </option-node>
-    <dialogue-node nodeindex="2" editor-x="671" editor-y="152">
-      <end-conversation />
+    <dialogue-node nodeindex="2" editor-x="731" editor-y="127">
+      <end-conversation>
+        <effect>
+          <trigger-cutscene idTarget="SmokeFinal" />
+          <condition />
+        </effect>
+      </end-conversation>
     </dialogue-node>
     <dialogue-node nodeindex="3" editor-x="666" editor-y="397">
       <speak-char idTarget="BadGuy">No me digas que vas a hacer eso que hablamos... jejejeje</speak-char>
@@ -632,7 +681,7 @@
       <condition />
       <child nodeindex="3" />
     </option-node>
-    <dialogue-node nodeindex="2" editor-x="823" editor-y="187">
+    <dialogue-node nodeindex="2" editor-x="742" editor-y="161">
       <speak-player>Mentirusco!! Traemela porfas</speak-player>
       <condition>
         <inactive flag="HasCalculator" />
@@ -641,7 +690,14 @@
       <condition>
         <active flag="HasCalculator" />
       </condition>
-      <end-conversation />
+      <end-conversation>
+        <effect>
+          <trigger-cutscene idTarget="GirlFinal" />
+          <condition>
+            <active flag="HasCalculator" />
+          </condition>
+        </effect>
+      </end-conversation>
     </dialogue-node>
     <dialogue-node nodeindex="3" editor-x="687" editor-y="524">
       <speak-char idTarget="AlmostGirlfriend">Recupéramela anda crack</speak-char>
@@ -650,12 +706,12 @@
     </dialogue-node>
   </graph-conversation>
   <graph-conversation id="ConversationWithBadguy2">
-    <dialogue-node nodeindex="0">
+    <dialogue-node nodeindex="0" editor-x="36" editor-y="48">
       <speak-char idTarget="BadGuy">¿Vuelves a por un piti?</speak-char>
       <condition />
       <child nodeindex="1" />
     </dialogue-node>
-    <option-node nodeindex="1" preListening="yes" editor-x="437" editor-y="174" x="437" y="174">
+    <option-node nodeindex="1" preListening="yes" editor-x="461" editor-y="154" x="461" y="154">
       <speak-player>Si tio</speak-player>
       <condition />
       <child nodeindex="2" />
@@ -663,15 +719,20 @@
       <condition />
       <child nodeindex="3" />
     </option-node>
-    <dialogue-node nodeindex="2" editor-x="789" editor-y="246">
-      <end-conversation />
+    <dialogue-node nodeindex="2" editor-x="715" editor-y="77">
+      <end-conversation>
+        <effect>
+          <trigger-cutscene idTarget="SmokeFinal" />
+          <condition />
+        </effect>
+      </end-conversation>
     </dialogue-node>
     <dialogue-node nodeindex="3" editor-x="687" editor-y="524">
       <speak-char idTarget="BadGuy">Consígueme el balón que me quitó el profe y te doy lo tuyo sin problem.</speak-char>
       <condition />
       <child nodeindex="4" />
     </dialogue-node>
-    <dialogue-node nodeindex="4" editor-x="972" editor-y="323">
+    <dialogue-node nodeindex="4" editor-x="953" editor-y="263">
       <speak-player>Eso está hecho  (ง '̀͜ '́ )ง</speak-player>
       <condition />
       <end-conversation />
@@ -715,8 +776,46 @@
           <condition />
           <activate flag="HasLighter" />
           <condition />
+          <consume-object idTarget="Ball" />
+          <condition />
         </effect>
       </end-conversation>
     </dialogue-node>
   </graph-conversation>
+  <slidescene id="GirlFinal" start="no" next="end-chapter" class="accesible" type="cutscene">
+    <documentation>
+    </documentation>
+    <resources name="No name">
+      <asset type="slides" uri="assets/animation/Girl.eaa.xml" />
+    </resources>
+    <name>
+    </name>
+  </slidescene>
+  <slidescene id="SmokeFinal" start="no" next="end-chapter" class="accesible" type="cutscene">
+    <documentation>
+    </documentation>
+    <resources name="No name">
+      <asset type="slides" uri="assets/animation/Smoke.eaa.xml" />
+    </resources>
+    <name>
+    </name>
+  </slidescene>
+  <slidescene id="BurnExamnsFinal" start="no" next="end-chapter" class="accesible" type="cutscene">
+    <documentation>
+    </documentation>
+    <resources name="No name">
+      <asset type="slides" uri="assets/animation/BurnsExams.eaa.xml" />
+    </resources>
+    <name>
+    </name>
+  </slidescene>
+  <slidescene id="TeacherFinal" start="no" next="end-chapter" class="accesible" type="cutscene">
+    <documentation>
+    </documentation>
+    <resources name="No name">
+      <asset type="slides" uri="assets/animation/TeacherF.eaa.xml" />
+    </resources>
+    <name>
+    </name>
+  </slidescene>
 </eAdventure>
