@@ -560,6 +560,8 @@
         <effect>
           <trigger-cutscene idTarget="TeacherFinal" />
           <condition />
+          <activate flag="FinalExams" />
+          <condition />
         </effect>
       </use>
       <use needsGoTo="yes" keepDistance="35" not-effects="no">
@@ -568,6 +570,8 @@
         </condition>
         <effect>
           <trigger-cutscene idTarget="BurnExamnsFinal" />
+          <condition />
+          <activate flag="FinalExams" />
           <condition />
         </effect>
       </use>
@@ -600,7 +604,7 @@
     </actions>
   </object>
   <graph-conversation id="ConversationWithBadGuy1">
-    <dialogue-node nodeindex="0">
+    <dialogue-node nodeindex="0" editor-x="0" editor-y="0">
       <speak-char idTarget="BadGuy">Vaya cara llevas, seguro que suspendes pringao,¿quieres un cigarro y asi te calmas?</speak-char>
       <condition />
       <child nodeindex="1" />
@@ -618,6 +622,8 @@
         <effect>
           <trigger-cutscene idTarget="SmokeFinal" />
           <condition />
+          <activate flag="FinalSmoke" />
+          <condition />
         </effect>
       </end-conversation>
     </dialogue-node>
@@ -633,7 +639,7 @@
     </dialogue-node>
   </graph-conversation>
   <graph-conversation id="ConversationWithAlmostGirlfriend1">
-    <dialogue-node nodeindex="0">
+    <dialogue-node nodeindex="0" editor-x="0" editor-y="0">
       <speak-char idTarget="AlmostGirlfriend">¿Qué tal se te ha dado el examen?</speak-char>
       <condition />
       <child nodeindex="1" />
@@ -668,7 +674,7 @@
     </dialogue-node>
   </graph-conversation>
   <graph-conversation id="ConversationWithAlmostGirlfriend2">
-    <dialogue-node nodeindex="0">
+    <dialogue-node nodeindex="0" editor-x="0" editor-y="0">
       <speak-char idTarget="AlmostGirlfriend">¿Oye, y la calculadora que te presté? </speak-char>
       <condition />
       <child nodeindex="1" />
@@ -693,6 +699,10 @@
       <end-conversation>
         <effect>
           <trigger-cutscene idTarget="GirlFinal" />
+          <condition>
+            <active flag="HasCalculator" />
+          </condition>
+          <activate flag="FinalGirl" />
           <condition>
             <active flag="HasCalculator" />
           </condition>
@@ -723,6 +733,8 @@
       <end-conversation>
         <effect>
           <trigger-cutscene idTarget="SmokeFinal" />
+          <condition />
+          <activate flag="FinalSmoke" />
           <condition />
         </effect>
       </end-conversation>
@@ -818,10 +830,52 @@
     <name>
     </name>
   </slidescene>
-  <completable id="completable1" repeatable="false" type="completable">
-    <start-milestone type="ITEM" targetId="Password" />
-    <end-milestone type="SCENE" targetId="" />
-    <progress type="SUM" />
+  <completable id="Final1(smoke)" repeatable="false" type="completable">
+    <start-milestone type="SCENE" targetId="ExamClass" />
+    <end-milestone type="CONDITION">
+      <condition>
+        <active flag="FinalSmoke" />
+      </condition>
+    </end-milestone>
+    <progress type="SPECIFIC">
+      <milestone type="CHARACTER" targetId="AlmostGirlfriend" progress="0.1" />
+      <milestone type="ITEM" targetId="Calculator" progress="0.2" />
+      <milestone type="ITEM" targetId="FireAlarm" progress="0.4" />
+      <milestone type="ITEM" targetId="Key" progress="0.5" />
+      <milestone type="ITEM" targetId="Ball" progress="0.7" />
+    </progress>
     <score type="VARIABLE" method="SINGLE" id="var1" />
+  </completable>
+  <completable id="Final2(girl)" repeatable="false" type="completable">
+    <start-milestone type="SCENE" targetId="ExamClass" />
+    <end-milestone type="CONDITION">
+      <condition>
+        <active flag="FinalGirl" />
+      </condition>
+    </end-milestone>
+    <progress type="SPECIFIC">
+      <milestone type="ITEM" targetId="Calculator" progress="0.2" />
+      <milestone type="ITEM" targetId="FireAlarm" progress="0.4" />
+      <milestone type="ITEM" targetId="Key" progress="0.5" />
+      <milestone type="ITEM" targetId="Ball" progress="0.6" />
+      <milestone type="ITEM" targetId="Lighter" progress="0.7" />
+    </progress>
+    <score type="VARIABLE" method="SINGLE" id="var3" />
+  </completable>
+  <completable id="Final3(exams)" repeatable="false" type="completable">
+    <start-milestone type="SCENE" targetId="ExamClass" />
+    <end-milestone type="CONDITION">
+      <condition>
+        <active flag="FinalExams" />
+      </condition>
+    </end-milestone>
+    <progress type="SPECIFIC">
+      <milestone type="ITEM" targetId="Calculator" progress="0.2" />
+      <milestone type="ITEM" targetId="Key" progress="0.4" />
+      <milestone type="ITEM" targetId="Ball" progress="0.6" />
+      <milestone type="ITEM" targetId="Lighter" progress="0.8" />
+      <milestone type="ITEM" targetId="FireAlarm" progress="1" />
+    </progress>
+    <score type="VARIABLE" method="SINGLE" id="var4" />
   </completable>
 </eAdventure>
