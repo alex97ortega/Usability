@@ -170,7 +170,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: -457319490, guid: 1f4377176cff2be44a91530c512a90ec, type: 3}
+  m_Script: {fileID: -457319490, guid: c4625e77df0b89b409391c01563c7900, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   m_AutoRepaintOnSceneChange: 0
@@ -196,7 +196,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 1923815644, guid: 1f4377176cff2be44a91530c512a90ec, type: 3}
+  m_Script: {fileID: 1923815644, guid: c4625e77df0b89b409391c01563c7900, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   m_AutoRepaintOnSceneChange: 0

@@ -818,4 +818,10 @@
     <name>
     </name>
   </slidescene>
+  <completable id="Completable1" type="completable">
+    <start-milestone type="SCENE" targetId="" />
+    <end-milestone type="SCENE" targetId="" />
+    <progress type="SUM" />
+    <score type="VARIABLE" method="SINGLE" id="" />
+  </completable>
 </eAdventure>
